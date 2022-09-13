@@ -18,7 +18,7 @@ export default function MovieBlock({movieData, title}){
                         {movieData.length >= 1 ? ( 
                             <>
                                 {movieData.map((movie, index) =>(
-                                    <div className={styles.movie_item} key={index}>
+                                    <div className={movie.poster_path ? styles.movie_item_wrapper : ''} key={index}>
                                         {movie.poster_path && (
                                                 <Link to={`/exhibition/${movie.name ? 'series' : 'movies'}${movie.id}`}>
                                                     <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.name ? movie.name : movie.title}/>
