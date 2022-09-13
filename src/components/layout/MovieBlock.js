@@ -15,18 +15,17 @@ export default function MovieBlock({movieData, title}){
                     <div className={styles.red_line}></div>
 
                     <div className={styles.movie_items_container}>
-                        {movieData.length >= 1 ? (
+                        {movieData.length >= 1 ? ( 
                             <>
                                 {movieData.map((movie, index) =>(
-                                    <>
+                                    <div className={styles.movie_item} key={index}>
                                         {movie.poster_path && (
-                                            <div className={styles.movie_item} key={index}>
                                                 <Link to={`/exhibition/${movie.name ? 'series' : 'movies'}${movie.id}`}>
                                                     <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.name ? movie.name : movie.title}/>
                                                 </Link>
-                                            </div>
                                         )}
-                                    </>
+                                    </div>
+                                    
                                 ))}
                             </>
                         ) : (

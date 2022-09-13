@@ -22,6 +22,10 @@
     flex-wrap: wrap;
 }
 
+.movie_items_container span{
+   
+}
+
 .movie_item{
     width: 25%;
 }

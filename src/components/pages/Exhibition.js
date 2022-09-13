@@ -41,8 +41,6 @@ export default function Exhibition() {
 
   }
 
-  console.log(exhibitionData)
-
   useEffect(() =>{
 
     async function loadExhibition(type, id) {

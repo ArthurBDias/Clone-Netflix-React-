@@ -1,11 +1,21 @@
+import axios from "axios"
+
 const API_key = 'b36c2057f9e810360f8e3a13acc519d5'
 const API_url = 'https://api.themoviedb.org/3'
 
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3',
+    headers:{
+        'content-type': 'application/json'
+    }
+})
+
+const time = new Promise((resolve) => setTimeout(resolve, 50))
+
 const simpleFetch = async (endpoint) => { 
-    const time = await new Promise((resolve) => setTimeout(resolve, 50))
-    const req = await fetch(`${API_url}/${endpoint}`)
-    const res = await req.json()
-    return res
+    await time
+    const req = await api.get(endpoint)
+    return req.data
 }
 
 export default {

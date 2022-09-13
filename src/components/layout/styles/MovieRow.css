@@ -24,12 +24,13 @@
     border-radius: 50% ;
     background-color: #222;
     font-weight: bold;
-    color: #E50914;
+    color: #fff;
     text-shadow: 3px 3px rgba(0, 0, 0, 0.8);
     transition: all .25s;
 }
 
 .swiper-button-next:hover, .swiper-button-prev:hover{
+    background-color: #E50914;
     padding: 50px 50px;
 }
 

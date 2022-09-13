@@ -11,7 +11,7 @@ export default function Header() {
 
   const [search, setSearch] = useState(null)
 
-  const [searchInput, setSearchInput] = useState()
+  const [searchInput, setSearchInput] = useState("")
 
   const navigate = useNavigate()
 
