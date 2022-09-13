@@ -1,73 +1,81 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-
-import {MdOutlineKeyboardArrowLeft , MdOutlineKeyboardArrowRight} from 'react-icons/md'
-
-import styles from './styles/MovieRow.module.css'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Navigation} from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import './styles/MovieRow.css'
 
 export default function MovieRow({title, items}) {
 
-    const [scrollX, setScrollX] = useState(0)
+    const [itemsPerView, setItemsPerView] = useState(0)
 
-    const [itemWidth, setItemWidth] = useState(13)
-
-    useEffect(() => {
-         if (window.innerWidth < 475){
-            setItemWidth (40)
-        }else if (window.innerWidth < 768){
-            setItemWidth(28)
-        }else if (window.innerWidth < 1200){
-            setItemWidth(22)
-        } 
-    }, [window.innerWidth])
-
- 
-
-    const handleScrollLeft = () => {
-        let x = scrollX + 50
-
-        if (x > 0) {
-            x = 0
+    const setView = () => {
+        if(window.innerWidth >= 1920){
+            setItemsPerView(6.5)
+        }
+        else if(window.innerWidth >= 1670){
+            setItemsPerView(5.8)
+        }
+        else if(window.innerWidth >= 1480){
+            setItemsPerView(5.2)
+        }
+        else if(window.innerWidth >= 1335){
+            setItemsPerView(4.8)
         }
 
-        setScrollX(x)
+        else if(window.innerWidth >= 1200){
+            setItemsPerView(4.2)
+        }
+
+        else if(window.innerWidth >= 1015){
+            setItemsPerView(3.5)
+        }
+
+        else if(window.innerWidth >= 769){
+            setItemsPerView(3.4)
+        }
+
+        else if(window.innerWidth >= 540){
+            setItemsPerView(2.8)
+        }
+
+        else if(window.innerWidth >= 280){
+            setItemsPerView(2.5)
+        }
+        
     }
-
-    const handleScrollRight = () => {
-        let x = scrollX - 50
-        let listW = (items.results.length * itemWidth) * (window.innerWidth / 100)
-
-        if ( (window.innerWidth - listW) > (x * (window.innerWidth / 100)) ) { //-2.457,6
-            x = ((items.results.length * itemWidth) - ((items.results.length * itemWidth) * 2)) + 100
-        }
     
-        setScrollX(x)
-    }
+    useEffect(() =>{
+        setView()
+    }, [])
+
+    window.addEventListener('resize', setView)
 
   return (
-    <div className={styles.movieRow}>
+    <div className="movieRow">
         <h2>{title}</h2>
 
-        <div className={styles.movieRow_arrowLeft} style={{fontSize: 40}} onClick={handleScrollLeft}> <MdOutlineKeyboardArrowLeft/></div>
-
-        <div className={styles.movieRow_arrowRight} style={{fontSize: 40}} onClick={handleScrollRight}> <MdOutlineKeyboardArrowRight/></div>
-
-        <div className={styles.movieRow_listArea}>
-            <div className={styles.movieRow_list} style={{
-                marginLeft: scrollX + 'vw',
-                width: items.results.length * 40 + 'vw'
-            }}>
+            <Swiper
+            slidesPerView={itemsPerView}
+            slidesPerGroup={Math.ceil(itemsPerView / 2)}
+            speed={500}
+            modules={[Navigation]}
+            navigation={itemsPerView > 3 ? true : false}      
+            >
+        
                 {
                     items.results && items.results.map((item, index) => (
-                        <div key={index} className={styles.movieRow_item}>                          
+                        <SwiperSlide key={index} style={{width: '20vw !important'}}>                          
                             <Link to={`/exhibition/${item.name ? 'series' : 'movies'}${item.id}`}>
-                                <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.title ? item.title : item.name} />
+                                <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.title ? item.title : item.name} className="movie_img" />
                             </Link>
-                        </div>
+                        </SwiperSlide>
                     ))
                 }
-            </div>
+
+            </Swiper>
         </div>
-    </div>
+     
   )
 }

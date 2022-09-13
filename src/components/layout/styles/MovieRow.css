@@ -1,0 +1,66 @@
+.movieRow{
+    padding: 2em 0 0 2vw;
+    margin-bottom:20px;
+    position: relative;
+}
+
+.movieRow h2{
+    font-size: 1.4em;
+    margin-bottom: 30px;
+}
+
+.movie_img{
+    transform: scale(0.9);
+    transition: all .25s;
+    max-height: 40vw;
+}
+
+.movie_img:hover{
+    transform: scale(1);
+}
+
+.swiper-button-next, .swiper-button-prev{
+    padding: 40px 40px ;
+    border-radius: 50% ;
+    background-color: #222;
+    font-weight: bold;
+    color: #E50914;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.8);
+    transition: all .25s;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover{
+    padding: 50px 50px;
+}
+
+
+@media(max-width: 1920px) {
+    .movieRow h2{
+        font-size: 2em;
+    }
+}
+
+@media(max-width: 1200px) {
+    .movieRow h2{
+        font-size: 1.6em;
+    }
+}
+
+@media(max-width: 768px) {
+    .movie_img{
+     
+        max-height: 50vw;
+    }
+}
+
+@media(max-width: 475px) {
+    .movieRow h2{
+        font-size: 1.3em;
+    }
+
+    .movie_img{
+     
+        max-height: 60vw;
+    }
+
+}

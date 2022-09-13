@@ -24,6 +24,7 @@
     margin-top: -1%;
     flex-direction: column;
     justify-content: center;
+    padding-left: 2.5em;
 }
 
 .featured_name{
@@ -95,6 +96,10 @@
 
 @media(max-width: 768px) {
 
+    .featured_info_container{
+        padding-left: 1.6em;
+    }
+
     .featured_name{
         font-size: 3.5em;
     }
@@ -115,6 +120,10 @@
 }
 
 @media(max-width: 460px) {
+
+    .featured_info_container{
+        padding-left: 1.1em;
+    }
 
     .featured{
         min-height: 480px;
